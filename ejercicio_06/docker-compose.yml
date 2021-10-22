@@ -1,0 +1,20 @@
+version: "3"
+ 
+services:
+ 
+  web1:
+    image: nicopaez/password-api
+  
+  web2:
+    image: nicopaez/password-api
+       
+  nginx:
+    image: nginx:1.21.3
+    ports:
+      - '80:80'
+    volumes:
+      - ./nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - web1
+      - web2
